@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "firestore-grafica-f5892": {
+      "hosting": {
+        "goty": [
+          "firestore-grafica-f5892"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "firestore-grafica-f5892"
+  }
+}

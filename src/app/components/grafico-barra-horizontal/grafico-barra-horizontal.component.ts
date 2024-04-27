@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { interval, Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -6,29 +6,9 @@ import { interval, Observable, Subscription } from 'rxjs';
   templateUrl: './grafico-barra-horizontal.component.html',
   styleUrls: ['./grafico-barra-horizontal.component.css']
 })
-export class GraficoBarraHorizontalComponent implements OnDestroy{
+export class GraficoBarraHorizontalComponent{
 
-  interval$: Observable<number> = interval(2500);
-  intervalSub: Subscription;
-  
-  results: any = [
-    {
-      "name": "Germany",
-      "value": 20
-    },
-    {
-      "name": "USA",
-      "value": 25
-    },
-    {
-      "name": "France",
-      "value": 15
-    },
-    {
-      "name": "dasdasd",
-      "value": 15
-    }
-  ];
+  @Input() results: any[] = []
 
   // options
   showXAxis = true;
@@ -42,20 +22,6 @@ export class GraficoBarraHorizontalComponent implements OnDestroy{
   colorScheme = 'nightLights';
 
   constructor() {
-    this.intervalSub =  this.interval$.subscribe(val => {
-      const newResults = [...this.results];
-
-      for(let i in newResults) {
-        newResults[i].value = Math.round(Math.random() * 500) ;
-      }
-
-      this.results = [...newResults];
-    })
-    
-  }
-
-  ngOnDestroy(): void {
-    this.intervalSub.unsubscribe();
   }
 
   onSelect(event: any) {

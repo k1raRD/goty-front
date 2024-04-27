@@ -10,9 +10,9 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from './components/components.module';
 import { NgToastModule } from 'ng-angular-popup';
 import { provideHotToastConfig } from '@ngneat/hot-toast';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-
-
 
 @NgModule({
   declarations: [
@@ -26,7 +26,9 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     RouterModule,
     ComponentsModule,
-    NgToastModule
+    NgToastModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [provideHotToastConfig()],
   bootstrap: [AppComponent]
